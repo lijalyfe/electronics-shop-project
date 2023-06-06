@@ -1,3 +1,4 @@
+import csv
 class Item:
     """
     Класс для представления товара в магазине.
@@ -28,7 +29,7 @@ class Item:
         if len(value) <= 10:
             self._name = value
         else:
-            raise ValueError("Exception: Длина наименования товара превышает 10 символов.")
+            raise ValueError("Длина наименования товара превышает 10 символов.")
 
     @classmethod
     def instantiate_from_csv(cls):
@@ -41,6 +42,10 @@ class Item:
                 item = cls(name, price)
                 items.append(item)
         return items
+
+    @staticmethod
+    def string_to_number(s):
+        return float(s.strip())
 
 
     def calculate_total_price(self) -> float:
