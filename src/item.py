@@ -26,8 +26,9 @@ class Item:
         """
         return self.price * self.quantity
 
-    def apply_discount(self):
+    def apply_discount(self) -> None:
         """
         Применяет установленную скидку для конкретного товара.
         """
-        pass
+        self.price *= self.pay_rate
+        return None

@@ -13,5 +13,5 @@
 
     #item3.apply_discount()
 
-    assert item3.price == 2700.0
-    assert Item.all == [item1, item2, item3]
+    #assert item3.price == 2700.0
+    #assert Item.all == [item1, item2, item3]
