@@ -16,3 +16,8 @@ def test_item_class():
 
     assert item3.price == 2700.0
     assert Item.all == [item1, item2, item3]
+
+
+def test_item_repr():
+    item = Item("Смартфон", 10000, 20)
+    assert repr(item) == "Item('Смартфон', 10000, 20)"
