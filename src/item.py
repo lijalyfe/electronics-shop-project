@@ -1,4 +1,6 @@
 import csv
+import os
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -20,6 +22,10 @@ class Item:
         Item.all.append(self)
 
 
+    def __repr__(self):
+        return f"Item('{self._name}', {self.price}, {self.quantity})"
+
+
     @property
     def name(self):
         return self._name
@@ -31,21 +37,22 @@ class Item:
         else:
             raise ValueError("Длина наименования товара превышает 10 символов.")
 
+    @staticmethod
+    def string_to_number(s):
+        return float(s.strip())
+
     @classmethod
     def instantiate_from_csv(cls):
-        items = []
-        with open('src/items.csv') as file:
+        current_dir = os.path.dirname(__file__)
+        filename = os.path.abspath(os.path.join(current_dir, "items.csv"))
+        with open(filename, newline='', encoding='windows-1251') as file:
             reader = csv.DictReader(file)
             for row in reader:
                 name = row['name']
                 price = cls.string_to_number(row['price'])
-                item = cls(name, price)
-                items.append(item)
-        return items
-
-    @staticmethod
-    def string_to_number(s):
-        return float(s.strip())
+                quantity = int(row['quantity'])
+                item = cls(name, price, quantity)
+        return cls.all
 
 
     def calculate_total_price(self) -> float:
@@ -62,3 +69,7 @@ class Item:
         """
         self.price *= self.pay_rate
         return None
+
+all_names = [item.name for item in Item.all]
+unique_names = set(all_names)
+assert len(all_names) == len(unique_names), "Найден дубликат товара"
