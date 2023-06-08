@@ -21,3 +21,8 @@ def test_item_class():
 def test_item_repr():
     item = Item("Смартфон", 10000, 20)
     assert repr(item) == "Item('Смартфон', 10000, 20)"
+
+
+def test_item_str():
+    item = Item("Смартфон", 10000, 20)
+    assert str(item) == 'Смартфон'
