@@ -26,6 +26,10 @@ class Item:
         return f"Item('{self._name}', {self.price}, {self.quantity})"
 
 
+    def __str__(self):
+        return self._name
+
+
     @property
     def name(self):
         return self._name
