@@ -1,4 +1,5 @@
 from src.item import Item
+
 class Phone(Item):
     def __init__(self, name: str, price: float, quantity: int, number_of_sim: int) -> None:
         super().__init__(name, price, quantity)
@@ -19,7 +20,7 @@ class Phone(Item):
         :return: Суммарное количество товара.
         """
         if not isinstance(other, (Phone, Item)):
-            raise TypeError("Can only add Phone or Item to Phone.")
+            raise TypeError("Нельзя сложить `Phone` или `Item` с экземплярами не `Phone` или `Item` классов")
 
         return self.quantity + other.quantity
 

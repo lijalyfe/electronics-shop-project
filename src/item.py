@@ -36,8 +36,8 @@ class Item:
         :param other: Другой экземпляр класса Item или Phone.
         :return: Суммарное количество товара.
         """
-        if not isinstance(other, (Item, Phone)):
-            raise TypeError("Can only add Item or Phone to Item.")
+        if not isinstance(other, Item):
+            raise TypeError("Нельзя сложить `Item` с экземплярами не `Item` классов")
 
         return self.quantity + other.quantity
 
