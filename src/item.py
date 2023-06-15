@@ -29,6 +29,10 @@ class Item:
     def __str__(self):
         return self._name
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return Item(f"{other._name}", self.price, self.quantity + other.quantity)
+        raise TypeError("Нельзя сложить `Item` с экземплярами не `Item` классов")
 
     @property
     def name(self):
