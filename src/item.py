@@ -29,10 +29,17 @@ class Item:
     def __str__(self):
         return self._name
 
-    def __add__(self, other):
-        if isinstance(other, Item):
-            return Item(f"{other._name}", self.price, self.quantity + other.quantity)
-        raise TypeError("Нельзя сложить `Item` с экземплярами не `Item` классов")
+    def __add__(self, other) -> int:
+        """
+        Сложение двух экземпляров класса Item или Item и Phone.
+
+        :param other: Другой экземпляр класса Item или Phone.
+        :return: Суммарное количество товара.
+        """
+        if not isinstance(other, (Item, Phone)):
+            raise TypeError("Can only add Item or Phone to Item.")
+
+        return self.quantity + other.quantity
 
     @property
     def name(self):

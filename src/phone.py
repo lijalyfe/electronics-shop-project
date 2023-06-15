@@ -11,3 +11,15 @@ class Phone(Item):
         """
         return f"Phone('{self._name}', {self.price}, {self.quantity}, {self.number_of_sim})"
 
+    def __add__(self, other) -> int:
+        """
+        Сложение двух экземпляров класса Phone или Phone и Item.
+
+        :param other: Другой экземпляр класса Phone или Item.
+        :return: Суммарное количество товара.
+        """
+        if not isinstance(other, (Phone, Item)):
+            raise TypeError("Can only add Phone or Item to Phone.")
+
+        return self.quantity + other.quantity
+
