@@ -11,8 +11,10 @@ def test__init__(self):
 
 
 # TestCase#2 на корректность возвращаемого значения метода repr:
-#phone = Phone("Iphone XR", 50_000, 10, 2)
-#assert repr(phone) == "Phone('Iphone XR', 50000, 10, 2)"
+def test__repr__(self):
+    phone = Phone("Iphone XR", 50_000, 10, 2)
+
+    assert repr(phone) == "Phone('Iphone XR', 50000, 10, 2)"
 
 # TestCase#3 на корректность сложения двух экземпляров класса Phone:
 #phone1 = Phone("Iphone XR", 50_000, 10, 2)
