@@ -14,3 +14,17 @@ class LanguageMixin:
         self._language = language
 
 
+    @property
+    def language(self):
+        return self._language
+
+
+    @language.setter
+    def language(self, value):
+        if value in self.LANGUAGES
+            self._language = value
+        else:
+            raise ValueError("Недопустимый язык")
+
+
+
