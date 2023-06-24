@@ -60,13 +60,18 @@ class Item:
     def instantiate_from_csv(cls):
         current_dir = os.path.dirname(__file__)
         filename = os.path.abspath(os.path.join(current_dir, "items.csv"))
-        with open(filename, newline='', encoding='windows-1251') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                name = row['name']
-                price = cls.string_to_number(row['price'])
-                quantity = int(row['quantity'])
-                item = cls(name, price, quantity)
+        try:
+            with open(filename, newline='', encoding='windows-1251') as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    if not all(key in row for key in ["name", "price", "quantity"]):
+                        raise InstantiateCSVError("Файл item.csv поврежден")
+                    name = row['name']
+                    price = cls.string_to_number(row['price'])
+                    quantity = int(row['quantity'])
+                    item = cls(name, price, quantity)
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл item.csv")
         return cls.all
 
 
@@ -88,3 +93,5 @@ class Item:
 all_names = [item.name for item in Item.all]
 unique_names = set(all_names)
 assert len(all_names) == len(unique_names), "Найден дубликат товара"
+
+
