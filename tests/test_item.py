@@ -1,7 +1,9 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
+import os
 from src.item import Item
 from src.phone import Phone
+
 
 def test_item_class():
     item1 = Item("Монитор", 15000, 10)
@@ -28,6 +30,19 @@ def test_item_repr():
 def test_item_str():
     item = Item("Смартфон", 10000, 20)
     assert str(item) == 'Смартфон'
+
+
+def test_instantiate_from_csv():
+    try:
+        if os.path.isfile("full.csv"):
+            os.remove("full.csv")
+    except FileNotFoundError:
+        pass
+    try:
+        if os.path.isfile("particular.csv"):
+            os.remove("particular.csv")
+    except FileNotFoundError:
+        pass
 
 
 # TestCase#1 на создание экземпляра класса Phone:
@@ -58,5 +73,3 @@ def test__add__():
 
     # на корректность сложения экземпляра класса Phone и экземпляра класса Item:
     assert (phone + item) == 30
-
-
