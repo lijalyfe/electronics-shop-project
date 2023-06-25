@@ -2,7 +2,19 @@ from src.keyboard import Keyboard
 
 
 def test_keyboard_creation():
-    keyboard = Keyboard("Keyboard", 999, 3)
+    keyboard = Keyboard("Keyboard", 9990, 3)
     assert keyboard.name == "Keyboard"
-    assert keyboard.price == 999
+    assert keyboard.price == 9990
     assert keyboard.quantity == 3
+
+
+def test_keyboard_language_change():
+    keyboard = Keyboard("Keyboard", 9990, 3)
+    assert keyboard.language == "EN"
+    keyboard.change_lang()
+    assert keyboard.language == "RU"
+    keyboard.change_lang()
+    assert keyboard.language == "EN"
+
+
+
